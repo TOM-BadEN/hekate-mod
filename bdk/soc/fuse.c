@@ -101,34 +101,11 @@ u32 fuse_read_dramid(bool raw_id)
 
 	// raw_id 是调用者决定的，为真则直接返回获取到的内存ID
 	// 这是为了适配8G增加的代码
-	// 目的是为了强制让内存ID为23和28，从而配合修改过的大气层来实现8G
+	// 目的是为了强制让内存ID为28，从而配合修改过的大气层来实现8G
 	if (raw_id) {
-		switch (dramid) {
-	
-			case 3:
-			case 5:
-			case 6:
-			case 17:
-			case 19:
-			case 21:
-			case 22:
-				return 23;
-			
-			case 8:
-			case 12:
-			case 20:
-			case 24:
-				return 28;
-			
-			case 10:
-			case 11:
-			case 14:
-			case 15:
-			case 25 ... 27:
-			case 29 ... 34:
-			default:
-				return dramid;
-		}
+		return 28;
+		// 这是原代码
+		// return dramid;
 	}
 
 
@@ -147,33 +124,11 @@ u32 fuse_read_dramid(bool raw_id)
 	// 边界检查是为了编码越界导致配置出问题
 	// 前面不检查的那段是因为只是UI调用，所以没有检查，直接返回真实的值
 	// 这是为了适配8G增加的代码
-	// 目的是为了强制让内存ID为23和28，从而配合修改过的大气层来实现8G
-	switch (dramid) {
-	
-		case 3:
-		case 5:
-		case 6:
-		case 17:
-		case 19:
-		case 21:
-		case 22:
-			return 23;
-		
-		case 8:
-		case 12:
-		case 20:
-		case 24:
-			return 28;
-		
-		case 10:
-		case 11:
-		case 14:
-		case 15:
-		case 25 ... 27:
-		case 29 ... 34:
-		default:
-			return dramid;
-	}
+	// 目的是为了强制让内存ID为28，从而配合修改过的大气层来实现8G
+	return 28;
+
+	// 这是原代码
+	// return dramid;
 }
 
 u32 fuse_read_hw_state()
